@@ -68,7 +68,7 @@ else:
     ])
 
     # Build chain with memory
-    model = get_model(model_name=model_name, temp=temperature, max_tokens=max_tokens)
+    model = get_model(model_name=model_name, temp=temperature, max_tokens=max_tokens, groq_api_key=api_key)
     chain = LLMChain(llm=model, prompt=prompt, memory=memory)
 
 
