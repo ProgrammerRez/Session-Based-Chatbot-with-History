@@ -34,13 +34,6 @@ with st.sidebar:
     temperature = st.slider("Temperature", 0.0, 1.0, 0.7, 0.01)
     max_tokens = st.slider("Max Tokens", 50, 300, 150)
 
-    # Handle session selection
-    existing_sessions = list(st.session_state.memories.keys())
-    session_id = st.selectbox(
-        "Select Session",
-        options=existing_sessions or ['default'],
-        index=len(existing_sessions) - 1 if existing_sessions else 0,
-    )
 
     if st.button("➕ New Session"):
         new_id = f"session_{len(st.session_state.memories) + 1}"
@@ -49,6 +42,13 @@ with st.sidebar:
         )
         session_id = new_id
 
+    # Handle session selection
+    existing_sessions = list(st.session_state.memories.keys())
+    session_id = st.selectbox(
+        "Select Session",
+        options=existing_sessions or ['default'],
+        index=len(existing_sessions) - 1 if existing_sessions else 0,
+    )
 
 if not api_key:
     st.error('Please Enter the API Key\n You can get it from the groq console')
